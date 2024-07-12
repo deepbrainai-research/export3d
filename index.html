@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Export3D</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+        <!--FACEBOOK-->
+    <meta property="og:image" content="images/overview.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="682">
+    <meta property="og:image:height" content="682">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://export3d.github.io"/>
+    <meta property="og:title" content="ExPort3D" />
+    <meta property="og:description" content="Project page for Export3D: Learning to Generate Conditional Tri-plane for 3D-aware Expression Controllable Portrait Animation" />
+
+        <!--TWITTER-->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Export3D" />
+    <meta name="twitter:description" content="Project page for Export3D: Learning to Generate Conditional Tri-plane for 3D-aware Expression Controllable Portrait Animation" />
+    <meta name="twitter:image" content="images/overview.png" />
+
+
+<!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+  <!-- <link rel="icon" type="image/png" href="img/seal_icon.png"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                <b>Export3D</b>:
+                Learning to Generate Conditional Tri-plane for</br> 3D-aware Expression Controllable Portrait Animation</br> 
+                <b> <small>ECCV 2024</small> </b>
+            </h2>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://taekyungki.github.io">
+                            Taekyung Ki
+                        </a>
+                        </br> DeepBrain AI Inc.
+                    </li>
+                    <li>
+                        <a href="https://kevinmin95.github.io">
+                            Dongchan Min
+                        </a>
+                        </br> Graduate School of AI, KAIST
+                    </li>
+                    <li>
+                        <a href="https://www.deepbrain.io">
+                        Gyeongsu Chae
+                        </a>
+                        </br> DeepBrain AI Inc.
+                    </li>
+
+                </li><br>
+                </ul>
+
+                <ul class="'list-inline">
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/abs/2404.00636">
+                                <image src="images/paper.png" height="60px">
+                                    <h5><strong>Paper</strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <image src="images/youtube_icon.png" height="60px">
+                                <h5><strong>Video (N/A) </strong></h5>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <image src="images/overview.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    In this paper, we present Export3D, a one-shot 3D-aware portrait animation method that is able to control the facial expression and camera view of a given portrait image.
+                    To achieve this, we introduce a tri-plane generator that directly generates a tri-plane of 3D prior by transferring the expression parameter of 3DMM into the source image.
+                    The tri-plane is then decoded into the image of different view through a differentiable volume rendering. Existing portrait animation methods heavily rely on image warping to transfer the expression in the motion space, challenging on disentanglement of appearance and expression.
+                    In contrast, we propose a contrastive pre-training framework for appearance-free expression parameter,
+                    eliminating undesirable appearance swap when transferring a cross-identity expression. Extensive experiments show that our pre-training framework can learn the appearance-free expression representation hidden in 3DMM,
+                    and our model can generate <strong>3D</strong>-aware <strong>ex</strong>pression controllable <strong>port</strong>rait image without appearance swap in the cross-identity manner.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    One-shot Novel-view Animation Results
+                </h3>
+                <p class="text-justify">
+                    Our method can generate 3D-aware videos using a single source image. Here, we fix the expression and
+                    animate the source (the first row) by controlling the camera parameters (the second row).
+                </p>
+                <video id="v0" width="100%" autoplay muted loop controls>
+                    <source src="videos/free-view_vox1.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 1.</b> One-shot free view animation results on Voxceleb1 test data.
+                    <br>
+                </p>
+                <video id="v0" width="100%" autoplay muted loop controls>
+                    <source src="videos/free-view_vfhq.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 2.</b> One-shot free view animation results on VFHQ test data.
+                    <br><br>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    One-shot Reconstruction Results
+                </h3>
+                <p class="text-justify">
+                    Our method can faithfully reconstruct facial expressions (e.g., eye-blink, mouth motion) and head pose using a single reference image.
+                    Here, the source images are the same as above. Note that for intuitive comparison, we incorporate the corresponding audio into the output videos.
+                    <br>First column: Groud Truth. Second column: Generated Result.  Third column: Estimated Depth.
+                </p>
+                <video id="v0" width="49%" controls muted>
+                    <source src="videos/id10282_recon-w-gt-depth.mp4" type="video/mp4" />
+                </video>
+
+                <video id="v0" width="49%" controls muted>
+                    <source src="videos/id00001_recon-w-gt-depth.mp4" type="video/mp4" />
+                </video>
+
+                <video id="v0" width="49%" controls muted>
+                    <source src="videos/id10283_recon-w-gt-depth.mp4" type="video/mp4" />
+                </video>
+
+                <video id="v0" width="49%" controls muted>
+                    <source src="videos/id00002_recon-w-gt-depth.mp4" type="video/mp4" />
+                </video>
+
+                <video id="v0" width="49%" controls muted>
+                    <source src="videos/id10284_recon-w-gt-depth.mp4" type="video/mp4" />
+                </video>
+
+                <video id="v0" width="49%" controls muted>
+                    <source src="videos/id00005_recon-w-gt-depth.mp4" type="video/mp4" />
+                </video>
+
+                <video id="v0" width="49%" controls muted>
+                    <source src="videos/id10292_recon-w-gt-depth.mp4" type="video/mp4" />
+                </video>
+
+                <video id="v0" width="49%" controls muted>
+                    <source src="videos/id00007_recon-w-gt-depth.mp4" type="video/mp4" />
+                </video>
+
+                <p class="text-justify ">
+                    <b>Video 3-6.</b> One-shot Reconstruction on Voxceleb1 test. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Video 7-10.</b> One-shot Reconstruction on VFHQ test.
+                    <br><br>
+                </p>
+            </div>
+        </div>
+            
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    One-shot Cross Identity Transfer Results
+                </h3>
+                <p class="text-justify">
+                    We provide cross expression+camera results with different identities in VFHQ.
+                    Our method can preserve the visual identity only with a single reference image (the first row) and the expression of the driving video (the first column). 
+                </p>
+                <video id="v0" width="100%" controls muted>
+                    <source src="videos/1-cce-w-gt.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 11.</b> One-shot Cross Expression+Camera on VFHQ test data (1).
+                    <br>
+                </p>
+                <video id="v0" width="100%" controls muted>
+                    <source src="videos/2-cce-w-gt.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 12.</b> One-shot Cross Expression+Camera on VFHQ test data (2).
+                    <br>
+                </p>
+
+                <br><br>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Comparison with other Methods
+                </h3>
+                <h4>
+                    Same-identity Transfer Results
+                </h4>
+                <video id="v0" width="100%" controls>
+                    <source src="videos/1a_compare_same.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 13a.</b> Same-identity Comparision in VFHQ.
+                    <br>
+                </p>
+                <video id="v0" width="100%" controls>
+                    <source src="videos/1b_compare_same.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 13b.</b> Same-identity Comparision in TalkingHead-1KH.
+                    <br>
+                </p>
+                <video id="v0" width="100%" controls>
+                    <source src="videos/1c_compare_same.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 13c.</b> Same-identity Comparision in VFHQ.
+                    <br>
+                </p>
+                <video id="v0" width="100%" controls>
+                    <source src="videos/1d_compare_same.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 13d.</b> Same-identity Comparision in TalkingHead-1KH.
+                    <br>
+                </p>
+
+                <br>
+                
+                <h4>
+                    Cross-identity Transfer Results
+                </h4>
+                <video id="v0" width="100%" controls>
+                    <source src="videos/2a_compare_cross.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 14a.</b> Cross-identity Comparision in VFHQ.
+                    <br>
+                </p>
+                <video id="v0" width="100%" controls>
+                    <source src="videos/2b_compare_cross.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 14b.</b> Cross-identity Comparision in TalkingHead-1KH.
+                    <br>
+                </p>
+                <video id="v0" width="100%" controls>
+                    <source src="videos/2c_compare_cross.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 14c.</b> Cross-identity Comparision in VFHQ.
+                    <br>
+                </p>
+                <video id="v0" width="100%" controls>
+                    <source src="videos/2d_compare_cross.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 14d.</b> Cross-identity Comparision in TalkingHead-1KH.
+                    <br>
+                </p>
+
+                <br><br>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    About Expression Controls
+                </h3>
+                <center> 
+                    <image src="images/3dmm-param_vs_clebs-param.png" class="img-responsive" alt="tsne" width="80%"><br>
+                        <p class="text-justify">
+                            To explicitly control the facial expression of a given source image, we leverage 3DMM expression parameters.
+                            However, we observe that raw 3DMM expression parameters still contain the appearance information even in the low-dimensional space (t-SNE), resulting in undesirable appearance swaps, such as eye shape, head size, etc., when transferring cross-identity expression.
+                            To alleviate this issue, we propose a <strong>contrastive pre-training framework to extract the expression information hidden in the expression parameters</strong>.
+                            Further details about the framework are in our paper.
+                        </p>
+                </center>
+                <video id="v0" width="100%" autoplay controls muted loop>
+                    <source src="videos/3c_ablation.mp4" type="video/mp4" />
+                </video>
+                <video id="v0" width="100%" autoplay controls muted loop>
+                    <source src="videos/3d_ablation.mp4" type="video/mp4" />
+                </video>
+                <p class="text-justify">
+                    <b>Video 15.</b> Ablation Studies on Expression Encoding.
+                    <br>
+                </p>
+                <br>
+                <h4>
+                    Expression Control along the Orthogonal Directions
+                </h4>
+
+                <center> 
+                    <p class="text-justify">
+                        At the same time, we enforce the orthogonal structure on them, representing different expressions along different basis vectors.
+                    </p>
+                </center>
+
+                <video id="v0" width="100%" autoplay controls muted loop>
+                    <source src="videos/4a_linear-v1-v5.mp4" type="video/mp4" />
+                </video>
+                <video id="v0" width="100%" autoplay controls muted loop>
+                    <source src="videos/4b_linear-v6-v10.mp4" type="video/mp4" />
+                </video>
+
+                <p class="text-justify">
+                    <b>Video 16.</b> Visualization of Expression Control along Orthogonal Directions.
+                    <br>
+                </p>
+                <br><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Novel-view Synthesis Results with Expression Transfer
+                </h3>
+                <center> 
+                    <p class="text-justify">
+                        Our method can transfer the driving expression to the source image without any multi-view inconsistency in terms of lighting and texture.
+                    </p>
+                </center>
+
+                <video id="v0" width="100%" autoplay controls muted loop>
+                    <source src="videos/5a_novel_view.mp4" type="video/mp4" />
+                </video>
+                <video id="v0" width="100%" autoplay controls muted loop>
+                    <source src="videos/5b_novel_view.mp4" type="video/mp4" />
+                </video>
+
+                <p class="text-justify">
+                    <b>Video 17.</b> Results of Novel-view Synthesis with Expression Transfer.
+                    <br>
+                </p>
+                <br><br>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@article{ki2024learning,
+    title={Learning to Generate Conditional Tri-plane for 3D-aware Expression Controllable Portrait Animation},
+    author={Ki, Taekyung and Min, Dongchan and Chae, Gyeongsu},
+    journal={arXiv preprint arXiv:2404.00636},
+    year={2024}
+}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Related Links
+                </h3>
+                <p class="text-justify">
+                    <a href="https://github.com/NVlabs/eg3d">EG3D</a> provides an excellent code base for our work.
+                </p>
+                <p class="text-justify">
+                    The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>, and <a href="https://jonbarron.info/mipnerf/"> Mip-NeRF</a>.
+            </div>
+        </div>
+        
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+
+                </h3>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
